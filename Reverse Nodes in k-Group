@@ -1,0 +1,22 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        int count = 0;
+        ListNode cur = head;
+        ListNode next = null;
+        while(cur != null && count != k){
+            count++;
+            cur = cur.next;
+        }
+        if(k == count){
+            cur = reverseKGroup(cur, k);
+            while(count-- > 0){
+                next = head.next;
+                head.next = cur;
+                cur = head;
+                head = next;
+            }
+            head = cur;
+        }
+        return head;
+    }
+}
